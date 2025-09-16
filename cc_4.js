@@ -32,39 +32,31 @@ let stock = [
     }
   ];
 
+console.log("Step 2. Products Without Discount:");
+stock.forEach(obj => console.log(`${obj.category} | ${obj.name} | \$${obj.price} | ${obj.inventory}`));
+
 //Discount loop by category
-console.log("Step 2:")
-inventory.forEach(obj => console.log(`${obj.sku} | ${obj.name} | \$${obj.price} | ${obj.stock}`))
+for (const product of stock) {
+  
+}
+
+console.log("Step 3. Apply Discount By Category:")
+stock.forEach(obj => console.log(`${obj.category} | ${obj.name} | \$${obj.price} | ${obj.inventory}`));
+
 
 //Discount by customer
-let newItemChipAndDip = {sku: "SKU-005",
-     name: "Chip and dip",
-     price: 30.00,
-     stock: 8
-};
 
-inventory.push(newItemChipAndDip);
+
+
 
 //Simulate purchases
-remove1 = inventory.pop();
+
 
 //Log each product with discount
-inventory[1].price = 2.00;
-inventory[0].stock = 1;
-
-console.log("\nStep 3: A sale on paperclips and -1 in book stock")
-inventory.forEach(obj => console.log(`${obj.sku} | ${obj.name} | \$${obj.price} | ${obj.stock}`))
 
 
-//Log all product inventory
 
-let orders = [
-  {orderId: "001",
-   items: [{sku: "SKU-001", qty: 1}, {sku: "SKU-004", qty: 1}]},
-
-  {orderID: "002",
-   items: [{sku: "SKU-003", qty: 2}]
-  }
-];
-
-
+//Log all product inventory, destructuring
+for (const [index, item] of stock.entries()) {
+  console.log(`${index}: ${stock.category} | ${stock.name} | \$${stock.price} | ${stock.inventory}`);
+}
