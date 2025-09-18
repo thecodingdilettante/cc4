@@ -1,45 +1,45 @@
 // Coding Challenge 4
 
-let stock = [
-    {category: "Apparel",
-     name: "Shirt",
+let stocks = [
+    {category: "apparel",
+     name: "shirt",
      price: 25.00,
      inventory: 18
      },
 
-    {category: "Groceries",
-     name: "Cauliflower",
+    {category: "groceries",
+     name: "cauliflower",
      price: 5.50,
      inventory: 12
     },
 
-    {category: "Electronics",
-     name: "Calculator Watch",
+    {category: "electronics",
+     name: "calculator watch",
      price: 50.99,
      inventory: 30
     },
 
-    {category: "Household",
-     name: "Chair",
+    {category: "household",
+     name: "chair",
      price: 35.50,
      inventory: 40
     },
 
-    {category: "Apparel",
-     name: "Socks",
+    {category: "apparel",
+     name: "socks",
      price: 8.00,
      inventory: 8
     }
   ];
 
 console.log("Step 2. Products Without Discount:");
-stock.forEach(obj => console.log(`${obj.category} | ${obj.name} | \$${obj.price} | ${obj.inventory}`));
+stocks.forEach(obj => console.log(`${obj.category} | ${obj.name} | \$${obj.price} | ${obj.inventory}`));
 
 //Discount loop by category
-for (const product of products) {
+for (const stock of stocks) {
   let discount = 0;
 
-  switch (product.category) {
+  switch (stock.category) {
   case "electronics":
     discount = .20
     break;
@@ -58,7 +58,8 @@ for (const product of products) {
     break;
 }
 
-product.promoPrice = (product.price * (1-discount)).toFixed(2));
+stock.promoPrice = (stock.price * (1-discount)).toFixed(2);
+
 }
 
 //Initialize customer list
@@ -74,11 +75,11 @@ let customers = [
 //Discount by customer
 let customerType = "regular";
 
-if (customerType = "senior") {
+if (customerType === "senior") {
   discount = .07;
 }
 
-else if (customerType = "student") {
+else if (customerType === "student") {
   discount = .05;
 }
 
@@ -87,13 +88,23 @@ else {
 };
 
 //Simulate purchases
+for (let customers = 1; customers <= 3; customers++) {
+  let total = 0;
 
+for (let selection of stocks) {
+    if (selection.inventory) {
+    total += selection.price;
+    selection.stock--;
+  
+}
+}
+
+let finalBill = total * (1-discount);
+console.log(`Customer ${customers} pays $${finalBill.toFixed(2)}`);
+}
 
 //Log each product with discount
 
 
 
 //Log all product inventory, destructuring
-for (const [index, item] of stock.entries()) {
-  console.log(`${index}: ${stock.category} | ${stock.name} | \$${stock.price} | ${stock.inventory}`);
-}
