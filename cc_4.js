@@ -33,7 +33,7 @@ let stocks = [
   ];
 
 console.log("Step 2. Products Without Discount:");
-stocks.forEach(obj => console.log(`${obj.category} | ${obj.name} | \$${obj.price} | ${obj.inventory}`));
+stocks.forEach(obj => console.log(`${obj.category} | ${obj.name} | \$${obj.price.toFixed(2)} | ${obj.inventory}`));
 
 //Discount loop by category
 for (const stock of stocks) {
@@ -103,8 +103,9 @@ let finalBill = total * (1-discount);
 console.log(`Customer ${customers} pays $${finalBill.toFixed(2)}`);
 }
 
-//Log each product with discount
-
-
+//Log one product with discount
+  for (let key in stocks[0]) {
+  console.log(`${key}: ${stocks[0][key]}`)   
+  };
 
 //Log all product inventory, destructuring
