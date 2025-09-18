@@ -109,3 +109,8 @@ console.log(`Customer ${customers} pays $${finalBill.toFixed(2)}`);
   };
 
 //Log all product inventory, destructuring
+
+
+for (let [index, item] of Object.entries(stocks[0])) {
+  console.log(`${index}: ${item}`)
+};
