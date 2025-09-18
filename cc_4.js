@@ -61,10 +61,30 @@ for (const product of products) {
 product.promoPrice = (product.price * (1-discount)).toFixed(2));
 }
 
+//Initialize customer list
+
+let customers = [
+  {customerNumber: 1, customerType: "regular", couponCode: "SAVE10", taxRate: 0.07, cart: [{sku:"001", qty: 2}, {sku:"002", qty: 3}]},
+
+  {customerNumber: 2, customerType: "student", couponCode: "FREESHIP", taxRate: 0.07, cart: [{sku:"004", qty: 1}, {sku:"005", qty: 5}]},
+
+  {customerNumber: 3, customerType: "senior", couponCode: "SAVE10", taxRate: 0.07, cart: [{sku:"002", qty: 8}, {sku:"003", qty: 2}]},
+];
+
 //Discount by customer
+let customerType = "regular";
 
+if (customerType = "senior") {
+  discount = .07;
+}
 
+else if (customerType = "student") {
+  discount = .05;
+}
 
+else {
+  discount = 0;
+};
 
 //Simulate purchases
 
