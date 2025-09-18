@@ -32,8 +32,8 @@ let stocks = [
     }
   ];
 
-console.log("Step 2. Products Without Discount:");
-stocks.forEach(obj => console.log(`${obj.category} | ${obj.name} | \$${obj.price.toFixed(2)} | ${obj.inventory}`));
+console.log("---- Part 2: Products Without Discount ----");
+stocks.forEach((obj, index) => console.log(`${index} | ${obj.category} | ${obj.name} | \$${obj.price.toFixed(2)} | ${obj.inventory}`));
 
 //Discount loop by category
 for (const stock of stocks) {
@@ -56,11 +56,11 @@ for (const stock of stocks) {
   default:
     discount = 0
     break;
-}
+};
 
 stock.promoPrice = (stock.price * (1-discount)).toFixed(2);
 
-}
+};
 
 //Initialize customer list
 
@@ -73,6 +73,7 @@ let customers = [
 ];
 
 //Discount by customer
+
 let customerType = "regular";
 
 if (customerType === "senior") {
@@ -88,29 +89,57 @@ else {
 };
 
 //Simulate purchases
+console.log("\n---- Part 5: Simulate 3 Customers Purchases ----");
+
 for (let customers = 1; customers <= 3; customers++) {
   let total = 0;
 
 for (let selection of stocks) {
     if (selection.inventory) {
-    total += selection.price;
+    total = total + selection.price;
     selection.stock--;
   
 }
-}
+};
 
 let finalBill = total * (1-discount);
 console.log(`Customer ${customers} pays $${finalBill.toFixed(2)}`);
-}
+};
 
 //Log one product with discount
+console.log("\n---- Part 6: Log One Product with Discount ----");
+
   for (let key in stocks[0]) {
   console.log(`${key}: ${stocks[0][key]}`)   
   };
 
 //Log all product inventory, destructuring
-
+console.log("\n---- Part 7: Log All Product Inventory With Discounts ----");
 
 for (let [index, item] of Object.entries(stocks[0])) {
-  console.log(`${index}: ${item}`)
+  console.log(`1. ${index}: ${item}`)
+};
+
+console.log("----");
+
+for (let [index, item] of Object.entries(stocks[1])) {
+  console.log(`2. ${index}: ${item}`)
+};
+
+console.log("----");
+
+for (let [index, item] of Object.entries(stocks[2])) {
+  console.log(`3. ${index}: ${item}`)
+};
+
+console.log("----");
+
+for (let [index, item] of Object.entries(stocks[3])) {
+  console.log(`4. ${index}: ${item}`)
+};
+
+console.log("----");
+
+for (let [index, item] of Object.entries(stocks[4])) {
+  console.log(`5. ${index}: ${item}`)
 };
