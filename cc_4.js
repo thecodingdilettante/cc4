@@ -36,13 +36,30 @@ console.log("Step 2. Products Without Discount:");
 stock.forEach(obj => console.log(`${obj.category} | ${obj.name} | \$${obj.price} | ${obj.inventory}`));
 
 //Discount loop by category
-for (const product of stock) {
-  
+for (const product of products) {
+  let discount = 0;
+
+  switch (product.category) {
+  case "electronics":
+    discount = .20
+    break;
+
+  case "apparel":
+    discount = .15
+      break;
+
+  case "groceries":
+  case "household":
+    discount = .10
+      break;
+
+  default:
+    discount = 0
+    break;
 }
 
-console.log("Step 3. Apply Discount By Category:")
-stock.forEach(obj => console.log(`${obj.category} | ${obj.name} | \$${obj.price} | ${obj.inventory}`));
-
+product.promoPrice = (product.price * (1-discount)).toFixed(2));
+}
 
 //Discount by customer
 
