@@ -65,11 +65,11 @@ stock.promoPrice = (stock.price * (1-discount)).toFixed(2);
 //Initialize customer list
 
 let customers = [
-  {customerNumber: 1, customerType: "regular", couponCode: "SAVE10", taxRate: 0.07, cart: [{name:"shirt", qty: 2}, {name:"cauliflower", qty: 3}]},
+  {customerNumber: 1, customerType: "regular", cart: [{name:"shirt", qty: 3}, {name:"cauliflower", qty: 3}]},
 
-  {customerNumber: 2, customerType: "student", couponCode: "FREESHIP", taxRate: 0.07, cart: [{name:"chair", qty: 1}, {name:"video game", qty: 5}]},
+  {customerNumber: 2, customerType: "student",  cart: [{name:"chair", qty: 1}, {name:"video game", qty: 5}]},
 
-  {customerNumber: 3, customerType: "senior", couponCode: "SAVE10", taxRate: 0.07, cart: [{name:"cauliflower", qty: 8}, {name:"calculator watch", qty: 2}]},
+  {customerNumber: 3, customerType: "senior", cart: [{name:"cauliflower", qty: 8}, {name:"calculator watch", qty: 2}]},
 ];
 
 //Discount by customer
