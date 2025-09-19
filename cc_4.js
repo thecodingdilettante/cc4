@@ -25,8 +25,8 @@ let stocks = [
      inventory: 40
     },
 
-    {category: "apparel",
-     name: "socks",
+    {category: "hobbies",
+     name: "video game",
      price: 8.00,
      inventory: 8
     }
@@ -41,16 +41,16 @@ for (const stock of stocks) {
 
   switch (stock.category) {
   case "electronics":
-    discount = .20
+    discount = .20  // 20% off electronics
     break;
 
   case "apparel":
-    discount = .15
+    discount = .15  // 15% off apparel
       break;
 
   case "groceries":
   case "household":
-    discount = .10
+    discount = .10  // 10% off groceries, household
       break;
 
   default:
@@ -65,11 +65,11 @@ stock.promoPrice = (stock.price * (1-discount)).toFixed(2);
 //Initialize customer list
 
 let customers = [
-  {customerNumber: 1, customerType: "regular", couponCode: "SAVE10", taxRate: 0.07, cart: [{sku:"001", qty: 2}, {sku:"002", qty: 3}]},
+  {customerNumber: 1, customerType: "regular", couponCode: "SAVE10", taxRate: 0.07, cart: [{name:"shirt", qty: 2}, {name:"cauliflower", qty: 3}]},
 
-  {customerNumber: 2, customerType: "student", couponCode: "FREESHIP", taxRate: 0.07, cart: [{sku:"004", qty: 1}, {sku:"005", qty: 5}]},
+  {customerNumber: 2, customerType: "student", couponCode: "FREESHIP", taxRate: 0.07, cart: [{name:"chair", qty: 1}, {name:"video game", qty: 5}]},
 
-  {customerNumber: 3, customerType: "senior", couponCode: "SAVE10", taxRate: 0.07, cart: [{sku:"002", qty: 8}, {sku:"003", qty: 2}]},
+  {customerNumber: 3, customerType: "senior", couponCode: "SAVE10", taxRate: 0.07, cart: [{name:"cauliflower", qty: 8}, {name:"calculator watch", qty: 2}]},
 ];
 
 //Discount by customer
@@ -77,32 +77,32 @@ let customers = [
 let customerType = "regular";
 
 if (customerType === "senior") {
-  discount = .07;
+  customerDiscount = .07;
 }
 
 else if (customerType === "student") {
-  discount = .05;
+  customerDiscount = .05;
 }
 
 else {
-  discount = 0;
+  customerDiscount = 0;
 };
 
 //Simulate purchases
 console.log("\n---- Part 5: Simulate 3 Customers Purchases ----");
 
 for (let customers = 1; customers <= 3; customers++) {
-  let total = 0;
+  let subtotal = 0;
 
-for (let selection of stocks) {
-    if (selection.inventory) {
-    total = total + selection.price;
-    selection.stock--;
+for (let customerSelection of stocks) {
+    if (customerSelection.inventory) {
+    subtotal = subtotal + customerSelection.price;
+    customerSelection.inventory--;
   
 }
 };
 
-let finalBill = total * (1-discount);
+let finalBill = subtotal * (1-customerDiscount);
 console.log(`Customer ${customers} pays $${finalBill.toFixed(2)}`);
 };
 
@@ -114,7 +114,7 @@ console.log("\n---- Part 6: Log One Product with Discount ----");
   };
 
 //Log all product inventory, destructuring
-console.log("\n---- Part 7: Log All Product Inventory With Discounts ----");
+console.log("\n---- Part 7: Log All Product Inventory With Discounts and Reduced Inventory ----");
 
 for (let [index, item] of Object.entries(stocks[0])) {
   console.log(`1. ${index}: ${item}`)
