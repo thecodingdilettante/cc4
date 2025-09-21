@@ -1,35 +1,11 @@
 // Coding Challenge 4
 
 let stocks = [
-    {category: "apparel",
-     name: "shirt",
-     price: 25.00,
-     inventory: 18
-     },
-
-    {category: "groceries",
-     name: "cauliflower",
-     price: 5.50,
-     inventory: 12
-    },
-
-    {category: "electronics",
-     name: "calculator watch",
-     price: 50.99,
-     inventory: 30
-    },
-
-    {category: "household",
-     name: "chair",
-     price: 35.50,
-     inventory: 40
-    },
-
-    {category: "hobbies",
-     name: "video game",
-     price: 8.00,
-     inventory: 8
-    }
+    {category: "apparel", name: "shirt", price: 25.00, inventory: 18},
+    {category: "groceries", name: "cauliflower", price: 5.50, inventory: 12},
+    {category: "electronics", name: "calculator watch", price: 50.99, inventory: 30},
+    {category: "household", name: "chair", price: 35.50, inventory: 40},
+    {category: "hobbies", name: "video game", price: 8.00, inventory: 8},
   ];
 
 console.log("---- Part 2: Products Without Discount ----");
@@ -40,66 +16,63 @@ for (let stock of stocks) {
 
   switch (stock.category) {
   case "electronics":
-    discount = .20  // 20% off electronics
+    stock.price *= .8;  // 20% off electronics
     break;
 
   case "apparel":
-    discount = .15  // 15% off apparel
+    stock.price *= .85;  // 15% off apparel
       break;
 
   case "groceries":
   case "household":
-    discount = .10  // 10% off groceries, household
+    stock.price *= .90;  // 10% off groceries, household
       break;
 
   default:
-    discount = 0;
+    stock.price *= 1;
     break;
+}
 };
-
-stock.promoPrice = (stock.price * (1-discount)).toFixed(2);
-
-};
-
-//Initialize customer list
-
-let customers = [
-  {customerNumber: 1, customerType: "regular", cart: ["shirt", "shirt", "cauliflower"]},
-
-  {customerNumber: 2, customerType: "student",  cart: ["chair", "video game", "video game"]},
-
-  {customerNumber: 3, customerType: "senior", cart: ["cauliflower", "calculator watch"]},
-];
 
 //Discount by customer
 
 let customerType = "regular";
 
-if (customerType === "senior") {
-  customerDiscount = .07;
+if (customerType === "student") {
+  customerDiscount = .05;
 }
 
-else if (customerType === "student") {
-  customerDiscount = .05;
+else if (customerType === "senior") {
+  customerDiscount = .07;
 }
 
 else {
   customerDiscount = 0;
 };
 
+//Initialize customer list
+
+let customers = [
+  {customerName: "A", customerType: "regular", cart: ["shirt", "shirt", "cauliflower"]},
+
+  {customerName: "B", customerType: "student", cart: ["chair", "video game", "video game"]},
+
+  {customerName: "C", customerType: "senior", cart: ["cauliflower", "calculator watch"]},
+];
+
 //Simulate purchases
 console.log("\n---- Part 5: Simulate 3 Customers Purchases ----");
 
 for (let customer of customers) {
-  customers++
+  customers++;
   let subtotal = 0;
 
-  if (customer.customerType === "senior") {
-  customerDiscount = .07;
+if (customer.customerType === "student") {
+  customerDiscount = .05;
 }
 
-else if (customer.customerType === "student") {
-  customerDiscount = .05;
+else if (customer.customerType === "senior") {
+  customerDiscount = .07;
 }
 
 else {
@@ -110,7 +83,7 @@ for (let customerCart of customer.cart) {
   for (let customerSelection of stocks) {
     if (customerSelection.name === customerCart) {
       if (customerSelection.inventory > 0) {
-        subtotal = subtotal + customerSelection.price;
+        subtotal += customerSelection.price;
         customerSelection.inventory--;
       }
       else {
@@ -122,7 +95,7 @@ for (let customerCart of customer.cart) {
 };
 
 let finalBill = subtotal * (1-customerDiscount);
-console.log(`Customer ${customer.customerNumber} pays $${finalBill.toFixed(2)}`);
+console.log(`Customer ${customer.customerName} pays $${finalBill.toFixed(2)}`);
 };
 
 //Log one product with discount
@@ -135,30 +108,9 @@ console.log("\n---- Part 6: Log One Product with Discount ----");
 //Log all product inventory, destructuring
 console.log("\n---- Part 7: Log All Product Inventory With Discounts and Reduced Inventory ----");
 
-for (let [index, item] of Object.entries(stocks[0])) {
-  console.log(`1. ${index}: ${item}`)
-};
-
-console.log("----");
-
-for (let [index, item] of Object.entries(stocks[1])) {
-  console.log(`2. ${index}: ${item}`)
-};
-
-console.log("----");
-
-for (let [index, item] of Object.entries(stocks[2])) {
-  console.log(`3. ${index}: ${item}`)
-};
-
-console.log("----");
-
-for (let [index, item] of Object.entries(stocks[3])) {
-  console.log(`4. ${index}: ${item}`)
-};
-
-console.log("----");
-
-for (let [index, item] of Object.entries(stocks[4])) {
-  console.log(`5. ${index}: ${item}`)
+for (let stock of stocks) {
+  console.log("----");
+for (let [key, value] of Object.entries(stock)) {
+  console.log(`${key}: ${value} \n`)
+}
 };
