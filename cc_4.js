@@ -36,8 +36,7 @@ console.log("---- Part 2: Products Without Discount ----");
 stocks.forEach((obj, index) => console.log(`${index} | ${obj.category} | ${obj.name} | \$${obj.price.toFixed(2)} | ${obj.inventory}`));
 
 //Discount loop by category
-for (const stock of stocks) {
-  let discount = 0;
+for (let stock of stocks) {
 
   switch (stock.category) {
   case "electronics":
@@ -54,7 +53,7 @@ for (const stock of stocks) {
       break;
 
   default:
-    discount = 0
+    discount = 0;
     break;
 };
 
@@ -65,11 +64,11 @@ stock.promoPrice = (stock.price * (1-discount)).toFixed(2);
 //Initialize customer list
 
 let customers = [
-  {customerNumber: 1, customerType: "regular", cart: [{name:"shirt", qty: 3}, {name:"cauliflower", qty: 3}]},
+  {customerNumber: 1, customerType: "regular", cart: ["shirt", "shirt", "cauliflower"]},
 
-  {customerNumber: 2, customerType: "student",  cart: [{name:"chair", qty: 1}, {name:"video game", qty: 5}]},
+  {customerNumber: 2, customerType: "student",  cart: ["chair", "video game", "video game"]},
 
-  {customerNumber: 3, customerType: "senior", cart: [{name:"cauliflower", qty: 8}, {name:"calculator watch", qty: 2}]},
+  {customerNumber: 3, customerType: "senior", cart: ["cauliflower", "calculator watch"]},
 ];
 
 //Discount by customer
@@ -91,19 +90,39 @@ else {
 //Simulate purchases
 console.log("\n---- Part 5: Simulate 3 Customers Purchases ----");
 
-for (let customers = 1; customers <= 3; customers++) {
+for (let customer of customers) {
+  customers++
   let subtotal = 0;
 
-for (let customerSelection of stocks) {
-    if (customerSelection.inventory) {
-    subtotal = subtotal + customerSelection.price;
-    customerSelection.inventory--;
-  
+  if (customer.customerType === "senior") {
+  customerDiscount = .07;
+}
+
+else if (customer.customerType === "student") {
+  customerDiscount = .05;
+}
+
+else {
+  customerDiscount = 0;
+};
+
+for (let customerCart of customer.cart) {
+  for (let customerSelection of stocks) {
+    if (customerSelection.name === customerCart) {
+      if (customerSelection.inventory > 0) {
+        subtotal = subtotal + customerSelection.price;
+        customerSelection.inventory--;
+      }
+      else {
+        console.log(`${customerSelection.name} is currently out of stock.`)
+      }
+      break;
+    }
 }
 };
 
 let finalBill = subtotal * (1-customerDiscount);
-console.log(`Customer ${customers} pays $${finalBill.toFixed(2)}`);
+console.log(`Customer ${customer.customerNumber} pays $${finalBill.toFixed(2)}`);
 };
 
 //Log one product with discount
