@@ -34,6 +34,16 @@ for (let stock of stocks) {
 }
 };
 
+//Initialize customer list
+
+let customers = [
+  {customerName: "A", customerType: "regular", cart: ["shirt", "shirt", "cauliflower"]},
+
+  {customerName: "B", customerType: "student", cart: ["chair", "video game", "video game"]},
+
+  {customerName: "C", customerType: "senior", cart: ["cauliflower", "calculator watch"]},
+];
+
 //Discount by customer
 
 let customerType = "regular";
@@ -49,16 +59,6 @@ else if (customerType === "senior") {
 else {
   customerDiscount = 0;
 };
-
-//Initialize customer list
-
-let customers = [
-  {customerName: "A", customerType: "regular", cart: ["shirt", "shirt", "cauliflower"]},
-
-  {customerName: "B", customerType: "student", cart: ["chair", "video game", "video game"]},
-
-  {customerName: "C", customerType: "senior", cart: ["cauliflower", "calculator watch"]},
-];
 
 //Simulate purchases
 console.log("\n---- Part 5: Simulate 3 Customers Purchases ----");
@@ -111,6 +111,6 @@ console.log("\n---- Part 7: Log All Product Inventory With Discounts and Reduced
 for (let stock of stocks) {
   console.log("----");
 for (let [key, value] of Object.entries(stock)) {
-  console.log(`${key}: ${value} \n`)
+  console.log(`${key}: ${value}`)
 }
 };
